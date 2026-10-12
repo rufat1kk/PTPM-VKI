@@ -2,6 +2,14 @@
 .DS_Store
 Thumbs.db
 
+# Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
 # Папки зависимостей и сборки
 node_modules/
 dist/
@@ -11,11 +19,10 @@ build/
 *.log
 npm-debug.log*
 
-# Конфиденциальные данные (ключи, доступы)
+# Конфиденциальные данные
 .env
 .env.local
 
-# Игнорировать абсолютно все файлы с расширением .log в проекте
-*.log
-
+# IDE
 .idea/
+.vscode/
