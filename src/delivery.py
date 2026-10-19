@@ -1,5 +1,4 @@
 import datetime
-import math
 
 
 def calculate_delivery_cost(weight, distance, package_type, is_express=False):
@@ -7,39 +6,43 @@ def calculate_delivery_cost(weight, distance, package_type, is_express=False):
     if weight < 0.1 or weight > 50.0 or distance < 1 or distance > 5000:
         return -1, "0000-00-00"
 
-    valid_types = ["обычный", "хрупкий", "опасный"]
-    if package_type not in valid_types:
+    if package_type not in ["обычный", "хрупкий", "опасный"]:
         return -1, "0000-00-00"
 
-    # базовая стоимость
-    base_cost = 200
-    distance_cost = distance * 5
-    total_cost = base_cost + distance_cost
+    # базовая цена
+    total = 200 + distance * 5
 
-    # коэффициент за вес
+    # коэффициент веса
     if 5.0 <= weight < 20.0:
-        total_cost *= 1.2
+        total = total * 1.2
     elif weight >= 20.0:
-        total_cost *= 1.5
+        total = total * 1.5
 
     # надбавка за тип
     if package_type == "хрупкий":
-        total_cost += 300
+        total = total + 300
     elif package_type == "опасный":
-        total_cost += 1000
+        total = total + 1000
 
     # экспресс дороже
     if is_express:
-        total_cost *= 1.5
-
-    # дата отправки
-    current_date = datetime.date(2026, 9, 3)
+        total = total * 1.5
 
     # дней на доставку
-    days_needed = max(1, math.ceil(distance / 500))
+    days = distance // 500
+    if days < 1:
+        days = 1
+
+    if distance % 500 != 0:
+        days = days + 1
+
     if is_express:
-        days_needed = max(1, days_needed // 2)
+        days = days // 2
+        if days < 1:
+            days = 1
 
-    delivery_date = current_date + datetime.timedelta(days=days_needed)
+    # дата отправки фиксирована
+    start = datetime.date(2026, 9, 3)
+    date = start + datetime.timedelta(days=days)
 
-    return int(total_cost), delivery_date.strftime("%Y-%m-%d")
+    return int(total), date.strftime("%Y-%m-%d")
