@@ -12,7 +12,7 @@ def calculate_delivery_cost(weight, distance, package_type, is_express=False):
     # базовая цена
     total = 200 + distance * 5
 
-    # коэффициент веса
+    # коэффициент веса БАГ2
     if 5.0 <= weight < 20.0:
         total = total * 1.2
     elif weight >= 20.0:
@@ -24,11 +24,11 @@ def calculate_delivery_cost(weight, distance, package_type, is_express=False):
     elif package_type == "опасный":
         total = total + 1000
 
-    # экспресс дороже
+    # экспресс дороже БАГ1
     if is_express:
         total = total * 1.5
 
-    # дней на доставку
+    # дней на доставку БАГ 3-4
     days = distance // 500
     if days < 1:
         days = 1

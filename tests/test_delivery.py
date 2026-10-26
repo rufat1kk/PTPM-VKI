@@ -163,6 +163,10 @@ class TestBigScenario(unittest.TestCase):
         self.assertEqual(cost, expected)
         self.assertEqual(date, "2026-09-04")
 
+    def test_my_date_600km_express(self):
+        cost, date = calculate_delivery_cost(10.0, 600, "обычный", True)
+        self.assertEqual(cost, 5760)
+        self.assertEqual(date, "2026-09-04")
 
 if __name__ == "__main__":
     unittest.main()
