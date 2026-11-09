@@ -5,4 +5,6 @@ echo "venv/" >> .gitignore
 echo ".coverage" >> .gitignore
 echo "htmlcov/" >> .gitignore
 echo ".idea/" >> .gitignore
-echo ".vscode/" >> .gitignore
+echo ".vscode/" >> .gitignore.idea/
+*.log
+.idea/
