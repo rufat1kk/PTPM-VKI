@@ -8,3 +8,4 @@ echo ".idea/" >> .gitignore
 echo ".vscode/" >> .gitignore.idea/
 *.log
 .idea/
+.coverage
